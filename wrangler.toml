@@ -1,7 +1,6 @@
 name = "zoho-user-manager"
 compatibility_date = "2024-06-10"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".next"
 
 [[d1_databases]]
 binding = "DB"
