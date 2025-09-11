@@ -1,0 +1,17 @@
+name = "zoho-user-manager"
+compatibility_date = "2024-06-10"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".next"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "device_management_db"
+database_id = "16a6e877-808f-45e4-95b3-38d84ca2a738"
+
+[env.production.vars]
+ADMIN_PASSWORD = "admin123"
+API_PASSWORD = "panda"
+
+[env.preview.vars]
+ADMIN_PASSWORD = "admin123"
+API_PASSWORD = "panda"
