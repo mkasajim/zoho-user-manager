@@ -101,7 +101,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-500" />
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-slate-600" />
           <p className="text-gray-600">Loading devices...</p>
         </div>
       </div>
@@ -115,8 +115,8 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Monitor className="w-8 h-8 text-blue-500 mr-3" />
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <Monitor className="w-8 h-8 text-slate-600 mr-3" />
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-600 to-slate-800 bg-clip-text text-transparent">
                 Device Management
               </h1>
             </div>
@@ -143,7 +143,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
                   placeholder="Search devices..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm min-w-[250px] text-gray-900 placeholder:text-gray-500"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-600 focus:border-transparent bg-white/50 backdrop-blur-sm min-w-[250px] text-gray-900 placeholder:text-gray-500"
                 />
               </div>
               <div className="relative">
@@ -151,7 +151,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value as any)}
-                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm appearance-none text-gray-900"
+                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-600 focus:border-transparent bg-white/50 backdrop-blur-sm appearance-none text-gray-900"
                 >
                   <option value="all">All Status</option>
                   <option value="active">Active Only</option>
@@ -161,7 +161,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
             </div>
             <button
               onClick={loadDevices}
-              className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              className="flex items-center px-4 py-2 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-lg hover:from-slate-700 hover:to-slate-900 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Refresh
