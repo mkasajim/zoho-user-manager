@@ -1,17 +1,20 @@
-name = "zoho-user-manager"
-main = ".vercel/output/static/_worker.js/index.js"
+name = "zoho-manager"
+pages_build_output_dir = ".vercel/output"
 compatibility_date = "2024-06-10"
 compatibility_flags = ["nodejs_compat"]
 
-[[d1_databases]]
-binding = "DB"
-database_name = "device_management_db"
-database_id = "16a6e877-808f-45e4-95b3-38d84ca2a738"
+# Using Pages Secrets for environment variables; omit [vars] here to avoid duplicate bindings during Pages deploys.
 
-[env.production.vars]
-ADMIN_PASSWORD = "admin123"
-API_PASSWORD = "panda"
+[env.production]
+  # Bind D1 for production deployments
+  [[env.production.d1_databases]]
+  binding = "DB"
+  database_name = "zohousermgr_20250913185800"
+  database_id = "a5a47b7c-dd50-4378-b8f6-4be1e2152788"
 
-[env.preview.vars]
-ADMIN_PASSWORD = "admin123"
-API_PASSWORD = "panda"
+[env.preview]
+  # Bind D1 for preview deployments
+  [[env.preview.d1_databases]]
+  binding = "DB"
+  database_name = "zohousermgr_20250913185800"
+  database_id = "a5a47b7c-dd50-4378-b8f6-4be1e2152788"
