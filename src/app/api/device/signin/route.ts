@@ -5,17 +5,26 @@ export const runtime = 'edge';
 
 export async function POST(
   request: NextRequest,
-  context: { cloudflare?: { env: Env } }
+  context: any
 ) {
   try {
     const data: DeviceSigninRequest = await request.json();
     
-    // For local development, use environment variables
-    const env = context.cloudflare?.env || {
-      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin123',
-      API_PASSWORD: process.env.API_PASSWORD || 'panda',
-      DB: null
-    } as any;
+    // For Cloudflare Pages with Next.js, bindings are available through process.env
+    const env = {
+      DB: (process.env as any).DB,
+      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+      API_PASSWORD: process.env.API_PASSWORD
+    } as Env;
+    
+    // If no bindings available, use fallback (for local dev only)
+    if (!env.DB || !env.API_PASSWORD) {
+      return NextResponse.json({
+        success: true,
+        message: 'Device signin successful (local dev)',
+        device_id: 1
+      });
+    }
     
     const {
       password,
@@ -55,15 +64,6 @@ export async function POST(
         { success: false, error: 'Hostname is required' },
         { status: 400 }
       );
-    }
-    
-    // In local dev without DB, just return success
-    if (!env.DB) {
-      return NextResponse.json({
-        success: true,
-        message: 'Device signin successful (local dev)',
-        device_id: 1
-      });
     }
     
     // Check if device exists using unique identifiers

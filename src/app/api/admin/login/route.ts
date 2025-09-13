@@ -5,20 +5,23 @@ export const runtime = 'edge';
 
 export async function POST(
   request: NextRequest,
-  context: { cloudflare?: { env: Env } }
+  context: any
 ) {
   try {
     const body = await request.json() as { password: string };
     const { password } = body;
     
-    // For local development, use environment variables
-    const env = context.cloudflare?.env || {
-      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin123',
-      API_PASSWORD: process.env.API_PASSWORD || 'panda',
-      DB: null
-    } as any;
+    // For Cloudflare Pages with Next.js, bindings are available through process.env
+    const env = {
+      DB: (process.env as any).DB,
+      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+      API_PASSWORD: process.env.API_PASSWORD
+    } as Env;
     
-    if (password !== env.ADMIN_PASSWORD) {
+    // Use fallback values for local dev if no bindings
+    const ADMIN_PASSWORD = env.ADMIN_PASSWORD || 'admin123';
+    
+    if (password !== ADMIN_PASSWORD) {
       return NextResponse.json(
         { error: 'Invalid password' },
         { status: 401 }

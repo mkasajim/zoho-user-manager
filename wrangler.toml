@@ -3,6 +3,12 @@ pages_build_output_dir = ".vercel/output"
 compatibility_date = "2024-06-10"
 compatibility_flags = ["nodejs_compat"]
 
+# D1 binding for default environment (when no specific environment is used)
+[[d1_databases]]
+binding = "DB"
+database_name = "zohousermgr_20250913185800"
+database_id = "a5a47b7c-dd50-4378-b8f6-4be1e2152788"
+
 # Using Pages Secrets for environment variables; omit [vars] here to avoid duplicate bindings during Pages deploys.
 
 [env.production]

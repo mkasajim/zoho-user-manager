@@ -4,7 +4,7 @@ import type { Env } from '@/types/database';
 export const runtime = 'edge';
 
 async function verifyAdminToken(token: string, env: any) {
-  if (!env.DB) {
+  if (!env?.DB) {
     // In local dev, just return true for any token
     return { valid: true };
   }
@@ -19,7 +19,7 @@ async function verifyAdminToken(token: string, env: any) {
 
 export async function POST(
   request: NextRequest,
-  context: { cloudflare?: { env: Env } }
+  context: any
 ) {
   try {
     const authHeader = request.headers.get('Authorization');
@@ -32,14 +32,14 @@ export async function POST(
     
     const token = authHeader.substring(7);
     
-    // For local development, use environment variables
-    const env = context.cloudflare?.env || {
-      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin123',
-      API_PASSWORD: process.env.API_PASSWORD || 'panda',
-      DB: null
-    } as any;
+    // For Cloudflare Pages with Next.js, bindings are available through process.env
+    const env = {
+      DB: (process.env as any).DB,
+      ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+      API_PASSWORD: process.env.API_PASSWORD
+    } as Env;
     
-    // In local dev without DB, just return success
+    // If no DB binding available, return success (for local dev only)
     if (!env.DB) {
       return NextResponse.json({ success: true });
     }
