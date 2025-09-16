@@ -243,7 +243,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
                     <tr key={device.id} className="hover:bg-gray-50/50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="text-sm font-bold text-slate-700 bg-slate-100 rounded-lg px-3 py-1 inline-block">
-                          #{device.id}
+                          {device.id}
                         </div>
                       </td>
                       <td className="px-6 py-4">
