@@ -229,6 +229,7 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
               <table className="w-full">
                 <thead className="bg-gray-50/80">
                   <tr>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Device</th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">System</th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hardware</th>
@@ -240,6 +241,11 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
                 <tbody className="divide-y divide-gray-200">
                   {filteredDevices.map((device) => (
                     <tr key={device.id} className="hover:bg-gray-50/50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="text-sm font-bold text-slate-700 bg-slate-100 rounded-lg px-3 py-1 inline-block">
+                          #{device.id}
+                        </div>
+                      </td>
                       <td className="px-6 py-4">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{device.hostname}</div>
