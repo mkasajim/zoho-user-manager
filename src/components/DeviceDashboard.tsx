@@ -88,12 +88,17 @@ export default function DeviceDashboard({ token, onLogout }: DeviceDashboardProp
   });
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-US', {
+    // Create date object and manually add 6 hours for GMT+6
+    const date = new Date(dateString);
+    const gmt6Date = new Date(date.getTime() + (6 * 60 * 60 * 1000)); // Add 6 hours in milliseconds
+    
+    return gmt6Date.toLocaleString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      hour12: true
     });
   };
 
